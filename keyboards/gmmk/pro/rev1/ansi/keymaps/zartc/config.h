@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define DEBOUNCE_TYPE sym_defer_g
 #undef DEBOUNCE
 #define DEBOUNCE 18
 

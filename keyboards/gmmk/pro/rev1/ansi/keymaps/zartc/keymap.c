@@ -109,7 +109,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |  Ctrl  |  Win   |  Alt   |                                      | Alt  |  Fn  | Ctrl ||MedPrv|MedNxt|MedNxt|
      * '------------------------------------------------------------------------------------------------------------'
      */
-
     [FN] = LAYOUT(
         XXXXXXX, KC_MYCM, KC_WHOM, KC_MAIL, KC_CALC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR,               KC_SLEP,
     //  -----------------------------------------------------------------------------------------------------------------------------------------------------
