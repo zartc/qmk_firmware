@@ -1,5 +1,6 @@
 /* Copyright 2021 Jonavin Eng @Jonavin
    Copyright 2022 gourdo1 <gourdo1@outlook.com>
+   Copyright 2022 zartc <zartc@wanadoo.fr>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,17 +35,17 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if(mods_state & MOD_BIT(KC_LEFT_GUI)) {
         if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_ALT))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_ALT))) {
             encoder_action_rgb_saturation(clockwise);
-        } 
+        }
         else if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_CTRL))) {
             encoder_action_rgb_brightness(clockwise);
-        } 
+        }
         else if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_SHIFT))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_SHIFT))) {
             encoder_action_rgb_speed(clockwise);
-        } 
+        }
         else  {
             encoder_action_rgb_hue(clockwise);
         }
-    } 
+    }
     else {
         encoder_action_volume(clockwise);
     }

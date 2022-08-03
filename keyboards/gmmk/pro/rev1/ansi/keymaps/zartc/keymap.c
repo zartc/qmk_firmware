@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum userspace_layers {
     BASE,
     MODE,
+    NUM,
     FN
 };
 
@@ -58,38 +59,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* MODE Layout
      * .-------------------------------------------------------------------------------------------------------------.
-     * |      ||      |      |      |      ||      |      |      |      ||      |      |      |      ||PrntSc||      |
+     * |      ||      |      |      |      ||      |      |      |      ||      |      |      |      ||PrtScr||      |
      * |=====================================================================================================++======|
      * |      |  P1  |  P2  |  P3  |  P4  |  P5  |  P6  |  P7  |  P8  |  P9  |  P0  |  P-  |  P+  |          ||      |
      * |------+------+------+------+------+------+------+------+------+------+------+------+------+----------++------|
-     * |         | Esc  |C+PgUp|C+PgDn|      |      | Ins  | Home |  Up  | End  | Del  |      |      |       ||      |
+     * |         | Esc  |C+PgUp|C+PgDn|      |      | Ins  | Home |  Up  | End  |      |      |      |       ||      |
      * |---------+------+------+------+------+------+------+------+------+------+------+------+------+-------++------|
-     * |  MODE     |CapsLk| Shift| Ctrl | Alt  |      | PgUp | Left | Down |Right |BkSpc |      |            ||      |
+     * |  MODE     |CapsLk| Shift| Ctrl | Alt  |      | PgUp | Left | Down |Right |      |      |            ||      |
      * |-----------+------+------+------+------+------+------+------+------+------+------+------|----++======++------|
-     * |  LShift      |Ctrl+Z|Ctrl+X|Ctrl+C|Ctrl+V|      | PgDn |      |      |      |      | RShift ||      ||      |
+     * |  LShift      |Ctrl+Z|Ctrl+X|Ctrl+C|Ctrl+V|      | PgDn |BkSpc | Del  |      |      | RShift ||      ||      |
      * |--------------+------+------+------+------+------+------+------+------+------+------+-++=====++------++======|
      * |  Ctrl  |  Win   |  LAlt  |                                      | RAlt |  Fn  | Ctrl ||      |      |      |
      * '------------------------------------------------------------------------------------------------------------'
      */
     [MODE] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR,               XXXXXXX,
+        _______, _______, _______,    _______,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,               _______,
     //  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-        XXXXXXX, KC_P1,   KC_P2,      KC_P3,      KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_PMNS, KC_PPLS, XXXXXXX,               XXXXXXX,
-        XXXXXXX, KC_ESC,  C(KC_PGUP), C(KC_PGDN), XXXXXXX, XXXXXXX, KC_INS,  KC_HOME, KC_UP,   KC_END,  KC_DEL,  XXXXXXX, XXXXXXX, XXXXXXX,               XXXXXXX,
-        _______, KC_CAPS, KC_LSFT,    KC_LCTL,    KC_LALT, XXXXXXX, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, XXXXXXX,          XXXXXXX,               XXXXXXX,
-        _______,          C(KC_Z),    C(KC_X),    C(KC_C), C(KC_V), XXXXXXX, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,      XXXXXXX, XXXXXXX,
-        _______, _______, _______,                                  XXXXXXX,                            _______, _______, _______,      XXXXXXX, XXXXXXX, XXXXXXX
+        TO(NUM), KC_P1,   KC_P2,      KC_P3,      KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_PMNS, KC_PPLS, XXXXXXX,               XXXXXXX,
+        XXXXXXX, KC_ESC,  C(KC_PGUP), C(KC_PGDN), XXXXXXX, XXXXXXX, KC_INS,  KC_HOME, KC_UP,   KC_END,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,               XXXXXXX,
+        _______, KC_CAPS, KC_LSFT,    KC_LCTL,    KC_LALT, XXXXXXX, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,          XXXXXXX,               XXXXXXX,
+        _______,          C(KC_Z),    C(KC_X),    C(KC_C), C(KC_V), XXXXXXX, KC_PGDN, KC_BSPC, KC_DEL,  XXXXXXX, XXXXXXX,          _______,      XXXXXXX, XXXXXXX,
+        _______, _______, _______,                                  _______,                            _______, _______, _______,      XXXXXXX, XXXXXXX, XXXXXXX
     ),
+
+
+    [NUM] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,               _______,
+    //  ----------------------------------------------------------------------------------------------------------------------------------------------------------
+        TO(BASE),KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_PMNS, KC_PPLS, _______,               _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   XXXXXXX, S(KC_9), S(KC_0), KC_PEQL,               _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PAST, XXXXXXX,          KC_PENT,               _______,
+        _______,          C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_COMM, KC_PDOT, KC_PSLS,          _______,      _______, _______,
+        _______, _______, _______,                            _______,                            _______, _______, _______,      _______, _______, _______
+    ),
+
 
     /* FN Layout
      * .-------------------------------------------------------------------------------------------------------------.
-     * |      ||MyCmp | Web  | Mail | Calc ||      |      |      |      ||      |      |      |      ||      ||Sleep |
+     * |      ||MyCmp | Web  | Mail | Calc ||      |      |      |      ||      |      |      |      ||PrtScr||Sleep |
      * |=====================================================================================================++======|
      * |      |      |      |      |      |      |      |      |      |      |      |RgbMo-|RgbMo+|          ||      |
      * |------+------+------+------+------+------+------+------+------+------+------+------+------+----------++------|
      * |         |RgbSa-|RgbBr+|RgbSa+|      |      |      |      |      |      |      |      |      |Q_Boot ||MedPrv|
      * |---------+------+------+------+------+------+------+------+------+------+------+------+------+-------++------|
-     * |  MODE     |RgbHu-|RgbBr-|RgbHu+|      |      |      |      |      | Lock |      |      |            ||MedNxt|
+     * |  MODE     |RgbHu-|RgbBr-|RgbHu+|      |      |      |      |      |      |      |      |            ||MedNxt|
      * |-----------+------+------+------+------+------+------+------+------+------+------+------|----++======++------|
      * |  LShift      |      |RgbTog|      |      |Q_Boot|NkTogg|      |      |      |      | RShift ||MedPrv|| Play |
      * |--------------+------+------+------+------+------+------+------+------+------+------+-++=====++------++======|
@@ -98,13 +111,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
 
     [FN] = LAYOUT(
-        XXXXXXX, KC_MYCM, KC_WHOM, KC_MAIL, KC_CALC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,               KC_SLEP,
+        XXXXXXX, KC_MYCM, KC_WHOM, KC_MAIL, KC_CALC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR,               KC_SLEP,
     //  -----------------------------------------------------------------------------------------------------------------------------------------------------
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_RMOD,RGB_MOD, XXXXXXX,               XXXXXXX,
         XXXXXXX, RGB_SAD, RGB_VAI, RGB_SAI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,               KC_MPRV,
         _______, RGB_HUD, RGB_VAD, RGB_HUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,               KC_MNXT,
         _______,          XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX, QK_BOOT, NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,      KC_MPRV, KC_MPLY,
-        _______, _______, _______,                            XXXXXXX,                             _______, _______, _______,      KC_MPRV, KC_MNXT, KC_MNXT
+        _______, _______, _______,                            _______,                            _______, _______, _______,      KC_MPRV, KC_MNXT, KC_MNXT
     )
 };
 // clang-format on

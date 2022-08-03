@@ -1,5 +1,6 @@
 /* Copyright 2021 Jonavin Eng @Jonavin
    Copyright 2022 gourdo1 <gourdo1@outlook.com>
+   Copyright 2022 zartc <zartc@wanadoo.fr>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,8 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define DEBOUNCE_TYPE = sym_defer_g
+#undef DEBOUNCE
+#define DEBOUNCE = 18
+
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-#define RGB_DISABLE_TIMEOUT (3 * 60 * 1000)
+#define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
 
 // RGB step values
 #define RGBLIGHT_HUE_STEP 32                              // The number of steps to cycle through the hue
