@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define DEBOUNCE_TYPE = sym_defer_g
+#define DEBOUNCE_TYPE sym_defer_g
 #undef DEBOUNCE
-#define DEBOUNCE = 18
+#define DEBOUNCE 18
 
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
