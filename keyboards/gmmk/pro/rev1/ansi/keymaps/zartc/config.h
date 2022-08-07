@@ -19,7 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #undef DEBOUNCE
-#define DEBOUNCE 18
+#define DEBOUNCE 10
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT (10 * 1000)                // Automatically turn off after 10 seconds of idle. 0 to never timeout.
 
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
@@ -40,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS                    // Enables Heatmap, Rain
 
 // Uncomment any #undef line below to turn OFF any default enabled RGB background effect (enabled in keyboards/gmmk/pro/config.h).
-// #undef ENABLE_RGB_MATRIX_ALPHAS_MODS                      // Solid color (seems redundant; seems same as RGB_MATRIX_SOLID_COLOR?)
+// #undef ENABLE_RGB_MATRIX_ALPHAS_MODS                   // Solid color (seems redundant; seems same as RGB_MATRIX_SOLID_COLOR?)
 #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN                 // Static, horizontal rainbow
 #undef ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT              // Static, vertical Rainbow
 #undef ENABLE_RGB_MATRIX_BREATHING                        // Breathing animation using selected HSV color
@@ -78,7 +81,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE          // Key hits shown in current hue - all other keys black
 //#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE                 // Keyboard lights up in chosen hue, key hits shown in complementary hue (try this as default?)
 //#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE            // Hue & value pulse around a single key hit then fades value out (Single key)
-//#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE       // same as above but more intense (Multi-key)
+#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE         // same as above but more intense (Multi-key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS             // Column and Row single current color fade (Single key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS        // Column and Row single color fade. (Multi-key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS             // Hue & value pulse away on the same column and row of key hit then fades (Single key)
