@@ -19,45 +19,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 #include "encoder_actions.h"
+#include "layers.h"
 
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     uint8_t mods_state = get_mods();
 
     /*
+    // on BASE layer
     <no-modifier>   =>  volume
-    LGUI            =>  Hue
-    LGUI+LALT       =>  Saturation
-    LGUI+LCTRL      =>  Brightness
-    LGUI+LSHIFT     =>  Speed
+
+    // on FN layer
+    <no-modifier>   =>  Hue
+    LALT            =>  Saturation
+    LCTRL           =>  Brightness
+    LSHIFT          =>  Speed
+    LSHIFT + LCTRL  =>  Mode (effect)
     */
 
-    if(mods_state & MOD_BIT(KC_LEFT_GUI)) {
-        if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_ALT))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_ALT))) {
+    if (IS_LAYER_ON(FN)) {
+        if((mods_state & (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) {
+            encoder_action_rgb_mode(clockwise);
+        }
+        if((mods_state & MOD_BIT(KC_LEFT_ALT)) == MOD_BIT(KC_LEFT_ALT)) {
             encoder_action_rgb_saturation(clockwise);
         }
-        else if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_CTRL))) {
+        else if((mods_state & MOD_BIT(KC_LEFT_CTRL)) == MOD_BIT(KC_LEFT_CTRL)) {
             encoder_action_rgb_brightness(clockwise);
         }
-        else if((mods_state & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_SHIFT))) == (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_LEFT_SHIFT))) {
+        else if((mods_state & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)) {
             encoder_action_rgb_speed(clockwise);
         }
         else  {
             encoder_action_rgb_hue(clockwise);
         }
     }
-    else {
+    else if (IS_LAYER_ON(BASE)) {
         encoder_action_volume(clockwise);
     }
 
     return false;  // Skip all further processing of this key
-
 }
 
 
 
 void encoder_action_volume(bool clockwise) {
     tap_code(clockwise ? KC_VOLU : KC_VOLD);
+}
+
+void encoder_action_rgb_mode(bool clockwise) {
+    if (clockwise)
+        rgb_matrix_step_noeeprom();
+    else
+        rgb_matrix_step_reverse_noeeprom();
+}
+
+void encoder_action_rgb_speed(bool clockwise) {
+    if (clockwise)
+        rgb_matrix_increase_speed_noeeprom();
+    else
+        rgb_matrix_decrease_speed_noeeprom();
 }
 
 void encoder_action_rgb_hue(bool clockwise) {
@@ -79,18 +100,4 @@ void encoder_action_rgb_brightness(bool clockwise) {
         rgb_matrix_increase_val_noeeprom();
     else
         rgb_matrix_decrease_val_noeeprom();
-}
-
-void encoder_action_rgb_mode(bool clockwise) {
-    if (clockwise)
-        rgb_matrix_step_noeeprom();
-    else
-        rgb_matrix_step_reverse_noeeprom();
-}
-
-void encoder_action_rgb_speed(bool clockwise) {
-    if (clockwise)
-        rgb_matrix_increase_speed_noeeprom();
-    else
-        rgb_matrix_decrease_speed_noeeprom();
 }
