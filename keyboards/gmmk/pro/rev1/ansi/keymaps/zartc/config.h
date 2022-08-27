@@ -25,22 +25,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
 
 // RGB step values
+// no matter what the value you put here the kb will always use
+// HUE_STEP 32, SAT_STEP 17, VAL_STEP 17
 #define RGBLIGHT_HUE_STEP 32                              // The number of steps to cycle through the hue
-#define RGBLIGHT_SAT_STEP 16                              // The number of steps to increment the saturation
-#define RGBLIGHT_VAL_STEP 16                              // The number of steps to increment the brightness
+#define RGBLIGHT_SAT_STEP 17                              // The number of steps to increment the saturation
+#define RGBLIGHT_VAL_STEP 17                              // The number of steps to increment the brightness
 
 // Startup values, when none have been set
-#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR    // Sets the default effect mode, if none has been set (was RGB_MATRIX_SOLID_COLOR)
-#define RGB_MATRIX_STARTUP_HUE 20                         // Sets the default hue value, if none has been set (Amber)
+#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE // Sets the default effect mode, if none has been set (was RGB_MATRIX_SOLID_COLOR)
+#define RGB_MATRIX_STARTUP_HUE 22                         // Sets the default hue value, if none has been set (Amber)
 #define RGB_MATRIX_STARTUP_SAT 255                        // Sets the default saturation value, if none has been set
-#define RGB_MATRIX_STARTUP_VAL 127                        // Sets the default brightness value, if none has been set
-#define RGB_MATRIX_STARTUP_SPD 0                          // Sets the default animation speed, if none has been set
+#define RGB_MATRIX_STARTUP_VAL 255                        // Sets the default brightness value, if none has been set
+#define RGB_MATRIX_STARTUP_SPD 67                         // Sets the default animation speed, if none has been set
 
 #define RGB_MATRIX_KEYPRESSES                             // Enables REACTIVE & SPLASH modes
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS                    // Enables Heatmap, Rain
 
 // Uncomment any #undef line below to turn OFF any default enabled RGB background effect (enabled in keyboards/gmmk/pro/config.h).
-// #undef ENABLE_RGB_MATRIX_ALPHAS_MODS                   // Solid color (seems redundant; seems same as RGB_MATRIX_SOLID_COLOR?)
+#undef ENABLE_RGB_MATRIX_ALPHAS_MODS                      // Solid color (seems redundant; seems same as RGB_MATRIX_SOLID_COLOR?)
 #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN                 // Static, horizontal rainbow
 #undef ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT              // Static, vertical Rainbow
 #undef ENABLE_RGB_MATRIX_BREATHING                        // Breathing animation using selected HSV color
@@ -77,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Only enabled if RGB_MATRIX_KEYPRESSES or RGB_MATRIX_KEYRELEASES is defined
 //#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE          // Key hits shown in current hue - all other keys black
 //#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE                 // Keyboard lights up in chosen hue, key hits shown in complementary hue (try this as default?)
-//#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE            // Hue & value pulse around a single key hit then fades value out (Single key)
+#undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE              // Hue & value pulse around a single key hit then fades value out (Single key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE         // same as above but more intense (Multi-key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS             // Column and Row single current color fade (Single key)
 #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS        // Column and Row single color fade. (Multi-key)
@@ -86,4 +88,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef ENABLE_RGB_MATRIX_SPLASH                           // Full rainbow pulses from key hit. All else black.
 #undef ENABLE_RGB_MATRIX_MULTISPLASH                      // Full rainbow pulses from multi-keys. All else black. (distracting on multiple keystroke hits)
 #undef ENABLE_RGB_MATRIX_SOLID_SPLASH                     // Single color pulses from key hit. All else black. (distracting on multiple key hits)
-//#undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH              // Single color pulses from muli-keys. All else black.
+#undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH              // Single color pulses from muli-keys. All else black.

@@ -33,12 +33,13 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     <no-modifier>   =>  Hue
     LSHIFT          =>  Saturation
     LALT            =>  Brightness
+
     LCTRL           =>  Mode (effect)
-    LCTRL + LALT    =>  Speed
+    LCTRL + LSHIFT  =>  Speed
     */
 
     if (IS_LAYER_ON(FN)) {
-        if((mods_state & (MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_LEFT_CTRL))) {
+        if((mods_state & (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) {
             encoder_action_rgb_speed(clockwise);
         }
         else if((mods_state & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)) {
