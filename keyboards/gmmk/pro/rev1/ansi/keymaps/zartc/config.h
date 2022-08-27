@@ -21,9 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef DEBOUNCE
 #define DEBOUNCE 10
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT (10 * 1000)                // Automatically turn off after 10 seconds of idle. 0 to never timeout.
-
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
 
