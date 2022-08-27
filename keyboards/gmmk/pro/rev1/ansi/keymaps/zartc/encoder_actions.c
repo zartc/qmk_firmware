@@ -31,24 +31,24 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
     // on FN layer
     <no-modifier>   =>  Hue
-    LALT            =>  Saturation
-    LCTRL           =>  Brightness
-    LSHIFT          =>  Speed
-    LSHIFT + LCTRL  =>  Mode (effect)
+    LSHIFT          =>  Saturation
+    LALT            =>  Brightness
+    LCTRL           =>  Mode (effect)
+    LCTRL + LALT    =>  Speed
     */
 
     if (IS_LAYER_ON(FN)) {
-        if((mods_state & (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) {
-            encoder_action_rgb_mode(clockwise);
-        }
-        if((mods_state & MOD_BIT(KC_LEFT_ALT)) == MOD_BIT(KC_LEFT_ALT)) {
-            encoder_action_rgb_saturation(clockwise);
-        }
-        else if((mods_state & MOD_BIT(KC_LEFT_CTRL)) == MOD_BIT(KC_LEFT_CTRL)) {
-            encoder_action_rgb_brightness(clockwise);
+        if((mods_state & (MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_LEFT_CTRL))) {
+            encoder_action_rgb_speed(clockwise);
         }
         else if((mods_state & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)) {
-            encoder_action_rgb_speed(clockwise);
+            encoder_action_rgb_saturation(clockwise);
+        }
+        else if((mods_state & MOD_BIT(KC_LEFT_ALT)) == MOD_BIT(KC_LEFT_ALT)) {
+            encoder_action_rgb_brightness(clockwise);
+        }
+        else if((mods_state & MOD_BIT(KC_LEFT_CTRL)) == MOD_BIT(KC_LEFT_CTRL)) {
+            encoder_action_rgb_mode(clockwise);
         }
         else  {
             encoder_action_rgb_hue(clockwise);
@@ -64,7 +64,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 
 void encoder_action_volume(bool clockwise) {
-    tap_code(clockwise ? KC_VOLU : KC_VOLD);
+    tap_code_delay(clockwise ? KC_VOLU : KC_VOLD, 10);
 }
 
 void encoder_action_rgb_mode(bool clockwise) {
