@@ -107,8 +107,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_MYCM, KC_WHOM, KC_MAIL, KC_CALC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR,               KC_SLEP,
     //  -----------------------------------------------------------------------------------------------------------------------------------------------------
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_RMOD,RGB_MOD, XXXXXXX,               XXXXXXX,
-        XXXXXXX, RGB_SAD, RGB_VAI, RGB_SAI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,               KC_MPRV,
-        _______, RGB_HUD, RGB_VAD, RGB_HUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,               KC_MNXT,
+        XXXXXXX, RGB_SAD, RGB_HUI, RGB_SAI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,               KC_MPRV,
+        _______, RGB_VAD, RGB_HUD, RGB_VAI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,               KC_MNXT,
         _______,          XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX, QK_BOOT, NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,      KC_MPRV, KC_MPLY,
         _______, _______, _______,                            _______,                            _______, _______, _______,      KC_MPRV, KC_MNXT, KC_MNXT
     )
