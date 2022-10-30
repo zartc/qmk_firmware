@@ -24,6 +24,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum userspace_layers {
     BASE,
     MODE,
-    NUM,
     FN
 };
