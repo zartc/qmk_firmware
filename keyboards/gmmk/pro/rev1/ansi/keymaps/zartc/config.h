@@ -18,11 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#undef DEBOUNCE
-#define DEBOUNCE 10
-
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-#define RGB_DISABLE_TIMEOUT (15 * 60 * 1000)
 
 // RGB step values
 // commented out because no matter what the value you put here the kb will always use: HUE_STEP 32, SAT_STEP 17, VAL_STEP 17
