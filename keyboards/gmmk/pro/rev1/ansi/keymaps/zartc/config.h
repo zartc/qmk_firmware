@@ -18,6 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#undef DEBOUNCE
+#define DEBOUNCE 20
+
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
 // RGB step values
