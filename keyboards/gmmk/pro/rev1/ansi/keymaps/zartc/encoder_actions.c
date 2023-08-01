@@ -38,7 +38,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     LCTRL + LSHIFT  =>  Speed
     */
 
-    if (IS_LAYER_ON(FN)) {
+    if (IS_LAYER_ON(BASE)) {
+        encoder_action_volume(clockwise);
+    } else if (IS_LAYER_ON(FN)) {
         if((mods_state & (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) == (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_CTRL))) {
             encoder_action_rgb_speed(clockwise);
         }
@@ -54,9 +56,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         else  {
             encoder_action_rgb_hue(clockwise);
         }
-    }
-    else if (IS_LAYER_ON(BASE)) {
-        encoder_action_volume(clockwise);
     }
 
     return false;  // Skip all further processing of this key
